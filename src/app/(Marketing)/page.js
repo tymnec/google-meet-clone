@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
 import Navbar from "./_components/navbar";
+import JoinMeet from "./_components/JoinMeet";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <Button>Hello</Button>
+ <JoinMeet/>
     </div>
   );
 };
