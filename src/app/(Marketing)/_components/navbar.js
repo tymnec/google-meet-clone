@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UserProfile } from "@clerk/nextjs";
 import React from "react";
 
 const Navbar = () => {
@@ -33,6 +34,8 @@ const Navbar = () => {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
+
+        <UserProfile />
       </div>
     </nav>
   );
