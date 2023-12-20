@@ -9,6 +9,8 @@ const TestingPage = () => {
 
   let localStream;
   let remoteStream;
+
+  // Set up peer connection
   useEffect(() => {
     const servers = {
       iceServers: [
@@ -87,7 +89,7 @@ const TestingPage = () => {
     await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
 
     const answerDescription = await pc.createAnswer();
-    await pc.setLocalDescription(new RTCSessionDescription(answerDescription));
+    await pc.setLocalDescription(answerDescription);
 
     const answer = {
       type: answerDescription.type,
@@ -123,6 +125,7 @@ const TestingPage = () => {
     pc.ontrack = (event) => {
       event.streams[0].getTracks().forEach((track) => {
         remoteStream.addTrack(track);
+        console.log("Track added to remote stream");
       });
     };
 
