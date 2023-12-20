@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./_components/navbar";
 import JoinMeet from "./_components/JoinMeet";
-import Carousel from "./_components/Carousel";
+import Carousel from "./_components/CarouselSection";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <Navbar />
       <div className="">
      <JoinMeet/>
-     <Carousel/>
+     {/* <Carousel/> */}
       </div>
     </div>
   );
