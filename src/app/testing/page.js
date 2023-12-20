@@ -2,12 +2,13 @@
 
 import React, { useEffect } from "react";
 import { firestore } from "@/lib/firebase";
+import { useState } from "react";
 
 const TestingPage = () => {
-  
+  const [pc, setPc] = useState(null);
+
   let localStream;
   let remoteStream;
-  let pc;
   useEffect(() => {
     const servers = {
       iceServers: [
@@ -20,8 +21,8 @@ const TestingPage = () => {
       ],
       iceCandidatePoolSize: 10,
     };
-     pc = new RTCPeerConnection(servers);
-  
+    let temp = new RTCPeerConnection(servers);
+    setPc(temp);
   }, []);
 
   const makeCall = async () => {
