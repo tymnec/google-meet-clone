@@ -84,7 +84,7 @@ const TestingPage = () => {
     await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
 
     const answerDescription = await pc.createAnswer();
-    await pc.setRemoteDescription(new RTCSessionDescription(answerDescription));
+    await pc.setLocalDescription(new RTCSessionDescription(answerDescription));
 
     const answer = {
       type: answerDescription.type,
