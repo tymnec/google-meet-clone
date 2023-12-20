@@ -132,22 +132,29 @@ const TestingPage = () => {
       audio: false,
     });
 
+    const remoteVideo = document.getElementById("remoteVideo");
     remoteStream = new MediaStream();
 
     // Pushing tracks from local stream to peer connection
     localStream.getTracks().forEach((track) => {
+      // console.log(track);
       pc.addTrack(track, localStream);
     });
 
     // Pull tracks from remote stream add to video stream
     pc.ontrack = (event) => {
+      console.log(event.streams[0].getTracks()[0]);
       event.streams[0].getTracks().forEach((track) => {
         remoteStream.addTrack(track);
+        remoteVideo.srcObject = remoteStream;
+        remoteVideo.play();
+        // If necessary:
+        // videoElement.muted = false;
+
         console.log("Track added to remote stream");
       });
     };
 
-    document.getElementById("remoteVideo").srcObject = remoteStream;
     document.getElementById("webcamVideo").srcObject = localStream;
   };
 
