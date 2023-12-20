@@ -4,23 +4,25 @@ import React, { useEffect } from "react";
 import { firestore } from "@/lib/firebase";
 
 const TestingPage = () => {
-  const servers = {
-    iceServers: [
-      {
-        urls: [
-          "stun:stun1.l.google.com:19302",
-          "stun:stun2.l.google.com:19302",
-        ],
-      },
-    ],
-    iceCandidatePoolSize: 10,
-  };
-  let pc = new RTCPeerConnection(servers);
-
+  
   let localStream;
   let remoteStream;
-
-  useEffect(() => {}, []);
+  let pc;
+  useEffect(() => {
+    const servers = {
+      iceServers: [
+        {
+          urls: [
+            "stun:stun1.l.google.com:19302",
+            "stun:stun2.l.google.com:19302",
+          ],
+        },
+      ],
+      iceCandidatePoolSize: 10,
+    };
+     pc = new RTCPeerConnection(servers);
+  
+  }, []);
 
   const makeCall = async () => {
     // Reference firestore collection
@@ -72,7 +74,7 @@ const TestingPage = () => {
     const callId = document.getElementById("callInput").value;
     const callDoc = firestore.collection("calls").doc(callId);
     const answerCandidates = callDoc.collection("answerCandidates");
-    // const offerCandidates = callDoc.collection("offerCandidates");
+    const offerCandidates = callDoc.collection("offerCandidates");
 
     pc.onicecandidate = (event) => {
       event.candidate && answerCandidates.add(event.candidate.toJSON());
