@@ -21,11 +21,11 @@
     "mongoose": "^8.0.3",
     "next": "14.0.4",
     "npm": "^10.2.5",
+    "peerjs": "^1.5.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
     "react-responsive-carousel": "^3.2.23",
-    "simplewebrtc": "^3.0.2",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
     "vercel": "^33.0.0"
