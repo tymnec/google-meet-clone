@@ -32,7 +32,7 @@ function RoomPage() {
         call.on("stream", function (remoteStream) {
           // remoteVideoRef.current.srcObject = remoteStream;
 
-          document.getElementById("remoteVideo").srcObject = mediaStream;
+          document.getElementById("remoteVideo").srcObject = remoteStream;
           document.getElementById("remoteVideo").play();
           // remoteVideoRef.current.play();
         });
