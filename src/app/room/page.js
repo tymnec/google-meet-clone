@@ -6,8 +6,7 @@ import Peer from "peerjs";
 function RoomPage() {
   const [peerId, setPeerId] = useState("");
   const [remotePeerIdValue, setRemotePeerIdValue] = useState("");
-  // const remoteVideoRef = useRef(null);
-  const [remoteVideoRef, setRemoteVideoRef] = useState(null);
+  const remoteVideoRef = useRef(null);
   const currentUserVideoRef = useRef(null);
   const peerInstance = useRef(null);
 
@@ -27,14 +26,10 @@ function RoomPage() {
       getUserMedia({ video: true, audio: true }, (mediaStream) => {
         currentUserVideoRef.current.srcObject = mediaStream;
         currentUserVideoRef.current.play();
-
         call.answer(mediaStream);
         call.on("stream", function (remoteStream) {
-          // remoteVideoRef.current.srcObject = remoteStream;
-
-          document.getElementById("remoteVideo").srcObject = remoteStream;
-          document.getElementById("remoteVideo").play();
-          // remoteVideoRef.current.play();
+          remoteVideoRef.current.srcObject = remoteStream;
+          remoteVideoRef.current.play();
         });
       });
     });
@@ -60,7 +55,6 @@ function RoomPage() {
       });
     });
   };
-
   return (
     <div className="container border shadow rounded-2xl">
       <div className="flex gap-3 place-items-center justify-center m-5">
@@ -96,7 +90,7 @@ function RoomPage() {
       </div>
       <div className="border rounded-3xl shadow p-3 m-3">
         <p className="font-bold">Remote Video</p>
-        <video id="remoteVideo" />
+        <video ref={remoteVideoRef} />
       </div>
     </div>
   );
