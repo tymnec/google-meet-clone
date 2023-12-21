@@ -28,6 +28,7 @@ function RoomPage() {
         currentUserVideoRef.current.play();
         call.answer(mediaStream);
         call.on("stream", function (remoteStream) {
+          console.log("hii1")
           remoteVideoRef.current.srcObject = remoteStream;
           remoteVideoRef.current.play();
         });
@@ -48,8 +49,8 @@ function RoomPage() {
       currentUserVideoRef.current.play();
 
       const call = peerInstance.current.call(remotePeerId, mediaStream);
-
       call.on("stream", (remoteStream) => {
+        console.log("hii2")
         remoteVideoRef.current.srcObject = remoteStream;
         remoteVideoRef.current.play();
       });
